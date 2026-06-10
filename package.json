@@ -1,0 +1,15 @@
+{
+  "name": "pokemon-tcg-pocket-index",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "fetch": "bash scripts/build-cards.sh",
+    "fetch:tcgdex": "bash scripts/fetch-cards.sh",
+    "enrich": "bash scripts/enrich-cards.sh",
+    "meta": "bash scripts/build-meta-decks.sh",
+    "build:data": "bash scripts/build-cards.sh && bash scripts/build-meta-decks.sh",
+    "build": "bash scripts/build-standalone.sh",
+    "start": "ruby -run -ehttpd . -p 3000"
+  }
+}

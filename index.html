@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokémon TCG Pocket — Card Index & Deck Builder</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <h1>Pokémon TCG Pocket</h1>
+        <p class="subtitle">Card Index · Custom Deck Builder · Meta Decks</p>
+        <p id="status-line" class="status-line">Loading…</p>
+      </div>
+      <nav class="tabs" role="tablist">
+        <button class="tab active" data-tab="index" role="tab" aria-selected="true">
+          Card Index
+        </button>
+        <button class="tab" data-tab="builder" role="tab" aria-selected="false">
+          Deck Builder
+        </button>
+        <button class="tab" data-tab="meta" role="tab" aria-selected="false">
+          Meta Decks
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <div id="loading" class="loading-panel">Loading card data…</div>
+      <div id="error" class="error-panel" hidden></div>
+
+      <!-- Card Index -->
+      <section id="panel-index" class="panel active" role="tabpanel">
+        <div class="toolbar">
+          <input
+            type="search"
+            id="index-search"
+            placeholder="Search name, expansion, type…"
+            autocomplete="off"
+          />
+          <select id="index-expansion-filter">
+            <option value="">All expansions</option>
+          </select>
+          <select id="index-type-filter">
+            <option value="">All types</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table id="index-table">
+            <thead id="index-thead"></thead>
+            <tbody id="index-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Deck Builder -->
+      <section id="panel-builder" class="panel" role="tabpanel" hidden>
+        <div class="builder-layout">
+          <div class="builder-main">
+            <div class="synergy-card">
+              <div class="synergy-header">
+                <h2>Synergy Score</h2>
+                <span id="synergy-score" class="synergy-value">—</span>
+              </div>
+              <div class="synergy-bar-wrap">
+                <div id="synergy-bar" class="synergy-bar"></div>
+              </div>
+              <p id="synergy-label" class="synergy-label">
+                Build a 20-card deck to see how it compares to tournament meta decks.
+              </p>
+            </div>
+
+            <div class="deck-slots" id="deck-slots"></div>
+            <p class="deck-count"><span id="deck-count">0</span> / 20 cards</p>
+
+            <div class="autobuild-panel">
+              <h3>Auto-Build</h3>
+              <div class="autobuild-controls">
+                <label>
+                  Highlight card
+                  <select id="autobuild-card">
+                    <option value="">Select a card…</option>
+                  </select>
+                </label>
+                <label>
+                  Energy / type
+                  <select id="autobuild-type">
+                    <option value="">Any type</option>
+                  </select>
+                </label>
+                <button type="button" id="autobuild-btn" class="btn primary">
+                  Auto-Build Deck
+                </button>
+                <button type="button" id="clear-deck-btn" class="btn">Clear Deck</button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="builder-sidebar">
+            <input
+              type="search"
+              id="builder-search"
+              placeholder="Add cards to deck…"
+              autocomplete="off"
+            />
+            <div id="builder-results" class="card-picker"></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Meta Decks -->
+      <section id="panel-meta" class="panel" role="tabpanel" hidden>
+        <div class="toolbar">
+          <label>
+            Sort by
+            <select id="meta-sort">
+              <option value="winRate">Win rate</option>
+              <option value="expansion">Expansion</option>
+              <option value="metaShare">Meta share</option>
+            </select>
+          </label>
+          <label>
+            Expansion
+            <select id="meta-expansion-filter">
+              <option value="">All expansions</option>
+            </select>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="meta-top-only" />
+            Top deck per expansion only
+          </label>
+        </div>
+        <div id="meta-decks-list" class="meta-decks-list"></div>
+      </section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
